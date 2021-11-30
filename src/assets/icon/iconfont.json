@@ -1,0 +1,44 @@
+{
+  "id": "2828937",
+  "name": "guigu",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "24051457",
+      "name": "01_电动车",
+      "font_class": "a-01_diandongche",
+      "unicode": "e694",
+      "unicode_decimal": 59028
+    },
+    {
+      "icon_id": "24051458",
+      "name": "01_飞机",
+      "font_class": "a-01_feiji",
+      "unicode": "e695",
+      "unicode_decimal": 59029
+    },
+    {
+      "icon_id": "24051459",
+      "name": "01_出租车",
+      "font_class": "a-01_chuzuche",
+      "unicode": "e696",
+      "unicode_decimal": 59030
+    },
+    {
+      "icon_id": "24051460",
+      "name": "01_缆车",
+      "font_class": "a-01_lanche",
+      "unicode": "e697",
+      "unicode_decimal": 59031
+    },
+    {
+      "icon_id": "24051461",
+      "name": "01_高铁",
+      "font_class": "a-01_gaotie",
+      "unicode": "e698",
+      "unicode_decimal": 59032
+    }
+  ]
+}

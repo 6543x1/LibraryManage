@@ -1,0 +1,616 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+/* 
+html {
+    display: block;
+}
+
+body {
+    background-size: 100% 100%;
+    background-attachment: fixed;
+} */
+
+
+
+.box {
+    width: 1500px;
+    height: 80px;
+    border: 3px solid black;
+    margin: 20px;
+    border-radius: 15px;
+    position: relative;
+}
+
+#header {
+    height: 110px;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.index {
+    height: 50px;
+    width: 200px;
+    margin: 10px;
+    float: left;
+}
+
+.index img {
+    height: 50px;
+    width: 200px;
+}
+
+.nav {
+    height: 60px;
+    width: 800px;
+    float: left;
+    border: turquoise;
+    border-style: solid;
+    border-radius: 15px;
+    margin: 10px;
+    background-color: rgb(246, 225, 185);
+    position: relative;
+    left: 150px;
+}
+
+.nav li {
+    float: left;
+    margin: 5px 50px 5px 50px;
+    list-style: none;
+}
+
+.nav li a {
+    font-size: x-large;
+}
+
+.nav li img {
+    height: 40px;
+    width: 40px;
+}
+
+.center {
+    font-size: 30px;
+    float: right;
+    position: relative;
+    right: 10px;
+    top: 10px;
+}
+
+.center img {
+    height: 60px;
+    width: 60px;
+}
+
+#bg-banner-box {
+    height: 150px;
+    width: 100%;
+    float: left;
+}
+
+#bg-banner-box img {
+    height: 50px;
+    width: 200px;
+    float: left;
+}
+
+#main {
+    height: auto;
+    width: 100%;
+    float: left;
+}
+
+.article1 {
+    float: left;
+}
+
+.article1 li {
+    list-style: none;
+}
+
+.article2 {
+    float: right;
+}
+
+.article2 li {
+    list-style: none;
+}
+
+h1 {
+    font-size: 36px;
+    color: rgb(252, 30, 1);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.box1 {
+    width: 1500px;
+    height: 500px;
+    margin: 20px;
+    position: relative;
+}
+
+.line1 {
+    width: 1500px;
+    height: 200px;
+    margin: 10px;
+    position: relative;
+    clear: both;
+}
+
+.line1_position {
+    height: 200px;
+    width: 1100px;
+    position: relative;
+    left: 400px;
+
+}
+
+.line1_position li {
+    float: left;
+    margin: 50px 50px 50px 50px;
+    margin-right: 100px;
+    list-style: none;
+
+}
+
+.line1_position li img {
+    height: 100px;
+    width: 100px;
+    border: azure;
+    border-style: solid;
+    border-radius: 15px;
+
+}
+
+.line2 {
+    float: left;
+    width: 1500px;
+    height: 200px;
+    margin: 10px;
+    position: relative;
+}
+
+.line2_position {
+    height: 200px;
+    width: 975px;
+    position: relative;
+    left: 525px;
+
+}
+
+.line2_position li {
+    float: left;
+    margin: 50px 50px 50px 50px;
+    margin-right: 100px;
+    list-style: none;
+}
+
+.line2_position li img {
+    height: 100px;
+    width: 100px;
+    border: azure;
+    border-style: solid;
+    border-radius: 15px;
+
+
+}
+
+a:link {
+    color: rgb(245, 6, 105);
+    text-decoration: none;
+}
+
+a:visited {
+    color: rgb(245, 6, 105);
+    text-decoration: none;
+}
+
+a:hover {
+    color: rgb(82, 11, 246);
+    text-decoration: none;
+}
+
+input:hover {
+    border-color: rgb(183, 180, 190);
+}
+
+.sign-page h1 {
+    font-size: 36px;
+    color: rgb(0, 110, 255);
+    text-decoration: none;
+    text-align: center;
+}
+
+.sign-page p {
+    color: black;
+    text-align: center;
+    margin-top: 1em;
+}
+
+
+.publish_sheet {
+    float: left;
+    width: 300px;
+    height: 500px;
+    margin: 0px 0px 0px 0px;
+    border-right: 1px solid black;
+    position: relative;
+}
+
+.publish_sheet li {
+
+    margin: 50px 50px 50px 5px;
+    margin-right: 100px;
+    list-style: none;
+}
+
+.operation {
+    width: 1100px;
+    height: 500px;
+    margin: 5px 5px 5px 5px;
+    position: relative;
+    left: 300px;
+}
+
+.operation ul {
+    width: 1100px;
+    height: 500px;
+
+}
+
+
+.operation li {
+    float: left;
+    margin-right: 200px;
+    position: relative;
+    top: 150px;
+    list-style: none;
+}
+
+.operation li img {
+    height: 150px;
+    width: 150px;
+    border: azure;
+    border-style: solid;
+    border-radius: 15px;
+
+}
+
+
+
+.box2 {
+    width: 1500px;
+    height: 50px;
+    border-bottom: 1px solid rgb(246, 225, 185);
+    margin: 20px;
+    position: relative;
+}
+
+.box2 p {
+    position: relative;
+    left: 50px;
+    font-size: 25px;
+    margin-top: 5px;
+}
+
+.box3 {
+    width: 1500px;
+    height: 500px;
+    margin: 20px;
+    position: relative;
+}
+
+.photo {
+    width: 250px;
+    margin: 50px;
+    margin-left: 150px;
+    margin-right: 50px;
+    float: left;
+}
+
+.box3 img {
+    height: 250px;
+    border-radius: 50px;
+    border: 1px solid black;
+}
+
+.box3 p {
+    font-size: 30px;
+    margin-bottom: 30px;
+}
+
+.information {
+    width: 700px;
+    height: 450px;
+    margin: 50px;
+    margin-left: 140px;
+    float: left;
+}
+
+.information a {
+    margin-left: 10px;
+    font-size: 20px;
+}
+
+.black_overlay {
+    display: none;
+    /* 此元素不会被显示*/
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: #bbbbbb;
+    z-index: 1001;
+    /* z-index 属性设置元素的堆叠顺序。*/
+    opacity: .80;
+    /* opacity 属性设置元素的不透明级别。*/
+}
+
+.white_content {
+    display: none;
+    position: absolute;
+    top: 20%;
+    border: 1px solid #bbbbbb;
+    border-radius: 20px;
+    background-color: white;
+    z-index: 1002;
+    /*层级要比.black_overlay高，这样才能显示在它前面*/
+    overflow: auto;
+}
+
+#getimg {
+    display: none;
+    position: absolute;
+    border: 1px solid #bbbbbb;
+    border-radius: 20px;
+    background-color: white;
+    z-index: 1002;
+    /*层级要比.black_overlay高，这样才能显示在它前面*/
+    overflow: hidden;
+    left: 150px;
+    top: 50px;
+    width: 250px;
+    height: 350px;
+}
+
+#getimg input {
+    float: left;
+    position: absolute;
+    margin: 0px;
+}
+
+#namechange {
+    display: none;
+    position: absolute;
+    z-index: 1002;
+    /*层级要比.black_overlay高，这样才能显示在它前面*/
+    overflow: auto;
+    left: 580px;
+    top: 56px;
+    width: 600px;
+    height: 30px;
+}
+
+#namechange input {
+    float: left;
+    margin: 0px;
+    margin-right: 5px;
+}
+
+@keyframes change {
+    0% {
+        top: 0;
+    }
+
+    100% {
+        top: 100px;
+    }
+}
+
+@keyframes change1 {
+    0% {
+        top: 0;
+    }
+
+    100% {
+        top: 60px;
+    }
+}
+
+
+#light {
+    position: absolute;
+    left: 50%;
+    width: 300px;
+    height: 280px;
+    margin-left: -150px;
+    animation-name: change;
+    animation-duration: 1s;
+}
+
+
+#form_submit {
+    text-align: center;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+#font_login {
+    font-weight: 400;
+    font-size: 22px;
+    color: #2c3cc4;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.button_beautiful {
+    float: left;
+    width: 60px;
+    height: 30px;
+    /* 高度 */
+    border-width: 0px;
+    border-radius: 6px;
+    background: #4ECDC4;
+    cursor: pointer;
+    outline: none;
+    color: white;
+    font-size: 16px;
+    margin-top: 20px;
+    margin-left: 60px;
+}
+
+#light1 {
+    position: absolute;
+    left: 50%;
+    top: 60px;
+    width: 300px;
+    height: 400px;
+    margin-left: -150px;
+    animation-name: change1;
+    animation-duration: 1s;
+}
+
+#font_authentication {
+    font-weight: 400;
+    font-size: 22px;
+    color: #2c3cc4;
+    text-align: center;
+    margin-top: 20px;
+}
+
+#form_authentication {
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+#form_authentication label {
+    font-size: 20px;
+    margin-left: 50px;
+}
+
+.operation2 {
+    width: 800px;
+    height: 500px;
+    margin: 5px 5px 5px 5px;
+    position: relative;
+    left: 300px;
+}
+
+.operation2 p {
+    position: absolute;
+    margin: 5px 5px 5px 5px;
+}
+/* 
+select: {
+    width: auto;
+    padding: 0 2%;
+    margin: 10px;
+} */
+
+option {
+    text-align: center;
+}
+
+.box4 {
+    width: 800px;
+    height: 600px;
+    margin: 20px;
+    margin-top: 0px;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    position: relative;
+    left: 350px;
+}
+
+.box5 {
+    width: 800px;
+    height: 80px;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    position: relative;
+}
+
+.box5 span {
+    font-size: 20px;
+}
+
+.title {
+    position: relative;
+    top: 10px;
+}
+
+.box6 {
+    width: 800px;
+    height: 520px;
+    position: relative;
+}
+
+#textshow {
+    position: relative;
+    float: left;
+    margin: 0px 50px 20px 50px;
+}
+
+/* #signi {
+    height: 200px;
+    width: 200px;
+    margin-left: 300px;
+    margin-top: 100px;
+    border-radius: 100%;
+    background: rgb(1, 176, 255);
+    border: none;
+    font-size: 40px;
+    outline: none;
+    cursor: pointer;
+} */
+
+#numsign {
+    margin-top: 20px;
+    position: relative;
+    left: 60px;
+    height: 30px;
+    width: 150px;
+    font-size: 20px;
+    background: rgb(1, 176, 255);
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.box7 {
+    width: 800px;
+    height: 200px;
+    position: relative;
+    border-bottom: 1px solid black;
+}
+
+.box8 {
+    width: 800px;
+    height: 50px;
+    position: relative;
+    border-bottom: 1px solid black;
+}
+
+.box9 {
+    width: 800px;
+    height: 270px;
+    position: relative;
+}
+
+
+
+#votei {
+    position: relative;
+    left: 0px;
+    height: 30px;
+    width: 150px;
+    font-size: 20px;
+    top: 150px;
+    background: rgb(1, 176, 255);
+    border: none;
+    outline: none;
+    cursor: pointer;
+}

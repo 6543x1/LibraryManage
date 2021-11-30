@@ -1,0 +1,41 @@
+*{
+    text-decoration: none;
+}
+a{
+    font-family: "Lucida Console", "Courier New", monospace;
+    color: black;
+}
+.line{
+    border:2px solid #BBBBBB;
+    border-top: 0;
+}
+.nav{
+    /* background-color: #bfa; */
+}
+.select{
+    width: 100%;
+    height: 97px;
+    line-height: 97px;
+    margin: 0px auto;
+    display: flex;
+    
+}
+.select li{
+    flex-grow: 1;
+    justify-content: space-evenly;
+}
+.select li:first-child{
+    margin-right: 240px;
+}
+.select li:last-child{
+    margin-left: 240px;
+}
+.nav a{
+    display: block;
+    font-size: 18px;
+    text-align: center;
+}
+img{
+    width: 35px;
+    margin-top: 27px;
+}

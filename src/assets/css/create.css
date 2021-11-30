@@ -1,0 +1,107 @@
+.process{
+    width: 770px;
+    height: 600px;
+    border: 1px solid black;
+    margin: 0 auto;
+}
+.t1{
+    text-align: center;
+    font-size: 22px;
+    margin: 28px auto;
+}
+#table{
+    text-align: center;
+    font-size: 20px;
+    margin-top: 130px;
+}
+#txt{
+    height: 35px;
+    width: 250px;
+}
+#sub{
+    width: 128px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: #00B0FF;
+    border: none;
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+.testswitch{
+    position: relative;
+    float: left; 
+    width: 90px;
+    margin-left: 45%;
+    -webkit-user-select:none; 
+    -moz-user-select:none; 
+    -ms-user-select: none;
+}
+.testswitch-checkbox{
+    display: none;
+}
+.testswitch-label {
+    display: block; 
+    overflow: hidden; 
+    cursor: pointer;
+    border: 2px solid #999999; 
+    border-radius: 20px;
+}
+ 
+.testswitch-inner {
+    display: block; 
+    width: 200%; 
+    margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+ 
+.testswitch-inner::before, .testswitch-inner::after {
+    display: block; 
+    float: right; 
+    width: 50%; 
+    height: 30px; 
+    padding: 0; 
+    line-height: 30px;
+    font-size: 14px; 
+    color: white; 
+    font-family: 
+    Trebuchet, Arial, sans-serif; 
+    font-weight: bold;
+    box-sizing: border-box;
+}
+ 
+.testswitch-inner::after {
+    content: attr(data-on);
+    padding-left: 10px;
+    background-color: #00e500; 
+    color: #FFFFFF;
+}
+ 
+.testswitch-inner::before {
+    content: attr(data-off);
+    padding-right: 10px;
+    background-color: #EEEEEE; 
+    color: #999999;
+    text-align: right;
+}
+ 
+.testswitch-switch {
+    position: absolute; 
+    display: block; 
+    width: 22px;
+    height: 22px;
+    margin: 4px;
+    background: #FFFFFF;
+    top: 0; 
+    bottom: 0;
+    right: 56px;
+    border: 2px solid #999999; 
+    border-radius: 20px;
+    transition: all 0.3s ease-in 0s;
+}
+ 
+.testswitch-checkbox:checked + .testswitch-label .testswitch-inner {
+    margin-left: 0;
+}
+ 
+.testswitch-checkbox:checked + .testswitch-label .testswitch-switch {
+    right: 0px; 
+}

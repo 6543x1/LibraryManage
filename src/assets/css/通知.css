@@ -1,0 +1,84 @@
+#header {
+	background-color:black;
+	color:white;
+	text-align:center;
+	padding:5px;
+}
+
+nav {
+	line-height:30px;
+	width:200px;
+	height: 565px;
+	float:left;
+	padding-top: 30px;
+	line-height: 50px;
+	font-size: 18px;
+	list-style-type:none;
+	margin-bottom:-9999px;
+	padding-bottom:9999px;
+	text-align: center;
+	border-style: dashed;
+	border-left: 0px;
+}
+
+#section {
+	margin-right: 100px;
+	float:left; 
+	margin-left: 300px;
+	position: absolute;
+}
+
+#footer {
+	color:white;
+	clear:both;
+	text-align:center;
+	padding:15px; 
+}
+
+#notice{
+	border-style: dashed;
+	border-color: black;
+	height: 105px;
+	padding-left: 20px;
+}
+
+#layout{
+	overflow:hidden;
+}
+
+
+#button-situation{
+	width: 250px;
+	text-align:center ;
+	padding-bottom: 10px;
+}
+
+#button-notice{
+	width: 375px;
+	text-align: center;
+	padding-bottom: 10px;
+}
+
+#recenotice{
+	width: 100px;
+	height: 35px;
+	border-radius: 15px;
+}
+
+#sendnotice{
+	width: 100px;
+	height: 35px;
+	border-radius: 15px;
+}
+
+#input-situation{
+	width: 100px;
+	height: 35px;
+	border-radius: 15px;
+}
+
+#button-nav{
+	background-color: transparent;
+	border-style: none;
+	font-size: 17px;
+}
