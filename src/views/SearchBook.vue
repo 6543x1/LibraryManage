@@ -4,13 +4,14 @@
       v-model:value="value"
       placeholder="input search text"
       enter-button
-      @search="onSearch"
+      @search="goSearch"
     />
-    <a-table :columns="columns" :data-source="myData">
+    <a-table :columns="columns" :data-source="searchResult" :rowKey='record=>record.bookID' :pagination="pagination">
         <!-- 懂了 columns会自动帮你加载全部的属性（除了key）显示到表格里 -->
         <!-- 如果有需要单独指定 像下面这样指定样式就好了 -->
         <!-- columns中可以指定！ -->
-    <template #name="{ text }">
+    <template #bookName="{ text }">
+      <!-- 可以在这里对字段进行超链接 -->
       <a>{{ text }}</a>
     </template>
     <template #customTitle>
@@ -30,58 +31,64 @@
         </a-tag>
       </span>
     </template> -->
-    <!-- <template #action="{ record }">
+    <template #action="{record}">
       <span>
-        <a @click="goInvite">Invite 一 {{ record.name }}</a>
+        <a-button type="link" @click="goBorrow(record.bookID)" :disabled="record.borrowed">{{record.borrowed===true ?"已借出":"借书"}}</a-button>
         <a-divider type="vertical" />
-        <a>Delete</a>
+        <a>查看详情</a>
         <a-divider type="vertical" />
-        <a class="ant-dropdown-link">
+        <!-- <a class="ant-dropdown-link">
           More actions
           <down-outlined />
-        </a>
+        </a> -->
       </span>
-    </template> -->
+    </template>
   </a-table>
   </div>
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref ,reactive} from 'vue';
 // defineComponent函数，只是对setup函数进行封装，返回options的对象；
 // 最重要的是：在TypeScript下，给予了组件 正确的参数类型推断 。
 // ref用于在setup中创建响应式数据
 import { SmileOutlined, DownOutlined } from '@ant-design/icons-vue';
 import service from "../api/services/service";
+import { message } from 'ant-design-vue';
 const columns = [
   {
-    dataIndex: 'name',
-    key: 'name',
+    dataIndex: 'bookName',
+    key: 'bookName',
     slots: {
-      title: 'customTitle',
-      customRender: 'name',
+      title: 'customTitle',//可以作为列的别名来使用
+      customRender: 'bookName',//控制那个#bookName
     },
   },
   {
-    title: 'Age',
-    dataIndex: 'age',
-    key: 'age',
+    title: '作者',
+    dataIndex: 'author',
+    key: 'author',
   },
   {
-    title: 'Address',
-    dataIndex: 'address',
-    key: 'address',
+    title: '位置',
+    dataIndex: 'position',
+    key: 'position',
   },
   {
-    title: 'Tags',
-    key: 'tags',
-    dataIndex: 'tags',
+    title: '分类',
+    key: 'type',
+    dataIndex: 'type',
     slots: {
       customRender: 'tags',
     },
   },
+   {
+    title: 'ISBN',
+    dataIndex: 'iSBN',
+    key: 'iSBN',
+  },
   {
-    title: 'Action',
+    title: '操作',
     key: 'action',
     slots: {
       customRender: 'action',
@@ -89,47 +96,31 @@ const columns = [
   },
 ];
 const data = [
-  {
-    key: '1',
-    name: 'John Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park',
-    tags: ['nice', 'developer'],
-  },
-  {
-    key: '2',
-    name: 'Jim Green',
-    age: 42,
-    address: 'London No. 1 Lake Park',
-    tags: ['loser'],
-  },
-  {
-    key: '3',
-    name: 'Joe Black',
-    age: 32,
-    address: 'Sidney No. 1 Lake Park',
-    tags: ['cool', 'teacher'],
-  },
+        {
+            author: "王珊",
+            bookID: "1",
+            bookName: "数据库系统概论",
+            iSBN: "9787040406641",
+            position: "1号柜子一层",
+            type: "大学教材"
+        },
+        {
+            "author": "王珊",
+            "bookID": "2",
+            "bookName": "数据库系统概论",
+            "iSBN": "9787040406641",
+            "position": "2号柜子二层",
+            "type": "大学教材"
+        }
 ];
 export default defineComponent({
   setup() {
     const value = ref('');
-    let myData=ref([]);
+    let myData=reactive([]);
     const onSearch = searchValue => {
       console.log('use value', searchValue);
       console.log('or use this.value', value.value);
-      let param=new FormData();
-      param.append("bookName",value);
-      let token=sessionStorage.getItem('token');
-      service.defaults.headers.common["token"] =token;
-      console.log(sessionStorage.getItem('token'));
-      service.post("/api/book/searchBook", param).then((res)=>{
-          console.log(res); 
-          myData=res.data.data;
-          console.log(myData);
-      }).catch((err)=>{
-        console.log("POST ERROR",err);
-      })
+     
     };
 
     return {
@@ -140,14 +131,62 @@ export default defineComponent({
       myData,
     };
   },
+  data(){
+      return{
+        searchResult:[],
+        pagination:{
+              defaultPageSize:10,
+              showTotal: total => `共查询到 ${total} 条数据`,
+              showSizeChanger:true,
+              pageSizeOptions: ['5', '10', '15', '20'],
+              onShowSizeChange:(current, pageSize)=>this.pageSize = pageSize
+            }
+        
+
+      }
+  },
   
   components: {
     SmileOutlined,
     DownOutlined,
   },
-  methods: {
-      goInvite(){
-          console.log('Invite someone', this.value);
+  methods:{
+      goBorrow(bookID){
+          console.log('borrowSomeBook',bookID);
+          if(typeof(bookID)=="undefined"){
+            return;
+          }
+      let param=new FormData();
+      param.append("bookID",bookID);
+      let token=sessionStorage.getItem('token');
+      service.defaults.headers.common["token"] =token;
+      console.log(sessionStorage.getItem('token'));
+      service.post("/api/book/borrowBook", param).then((res)=>{
+          console.log(res); 
+          this.searchResult=res.data.data;
+          console.log(this.searchResult);
+          if(res.data.status==true)
+          message.success("借书成功");
+          else
+          message.error("请重试");
+      }).catch((err)=>{
+        console.log("POST ERROR",err);
+      })
+      },
+      goSearch(){
+         let param=new FormData();
+      param.append("bookName",this.value);
+      console.log(this.value);
+      let token=sessionStorage.getItem('token');
+      service.defaults.headers.common["token"] =token;
+      console.log(sessionStorage.getItem('token'));
+      service.post("/api/book/searchBook", param).then((res)=>{
+          console.log(res); 
+          this.searchResult=res.data.data;
+          console.log(this.searchResult);
+      }).catch((err)=>{
+        console.log("POST ERROR",err);
+      })
       }
   }
   
