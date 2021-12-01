@@ -6,7 +6,7 @@
       enter-button
       @search="goSearch"
     />
-    <a-table :columns="columns" :data-source="searchResult" :rowKey='record=>record.bookID' :pagination="pagination">
+    <a-table :columns="columns" :data-source="data" :rowKey='record=>record.bookID' :pagination="pagination">
         <!-- 懂了 columns会自动帮你加载全部的属性（除了key）显示到表格里 -->
         <!-- 如果有需要单独指定 像下面这样指定样式就好了 -->
         <!-- columns中可以指定！ -->
@@ -33,7 +33,7 @@
     </template> -->
     <template #action="{record}">
       <span>
-        <a-button type="link" @click="goBorrow(record.bookID)" :disabled="record.borrowed">{{record.borrowed===true ?"已借出":"借书"}}</a-button>
+        <a-button type="link" @click="goBorrow(record.bookID)">设为已归还</a-button>
         <a-divider type="vertical" />
         <a>查看详情</a>
         <a-divider type="vertical" />

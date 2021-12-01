@@ -28,7 +28,7 @@
                 借书
               </span>
             </template>
-            <a-menu-item key="1" @click="changeMenu()">搜索书名</a-menu-item>
+            <a-menu-item key="1" @click="gotoSearchBookName()">搜索书名</a-menu-item>
             <a-menu-item key="2">搜索作者</a-menu-item>
             <a-menu-item key="3">搜索ISBN</a-menu-item>
             <a-menu-item key="4">option4</a-menu-item>
@@ -40,20 +40,21 @@
                 还书
               </span>
             </template>
-            <a-menu-item key="5">option5</a-menu-item>
-            <a-menu-item key="6">option6</a-menu-item>
-            <a-menu-item key="7">option7</a-menu-item>
+            <a-menu-item key="5" @click="gotoReturnBook">还书</a-menu-item>
+            <a-menu-item key="6" @click="gotoMyReturn(1)">我的未还图书</a-menu-item>
+            <a-menu-item key="7" @click="gotoMyReturn(2)">我的全部借书</a-menu-item>
             <a-menu-item key="8">option8</a-menu-item>
           </a-sub-menu>
           <a-sub-menu key="sub3">
+            <!-- 此处可以直接用v-if来判定是否渲染就好了 -->
             <template #title>
               <span>
                 <notification-outlined />
                 管理员
               </span>
             </template>
-            <a-menu-item key="9">添加书籍到图书馆</a-menu-item>
-            <a-menu-item key="10">查看所有被借出的书籍</a-menu-item>
+            <a-menu-item key="9" @click="gotoAddBook">添加书籍到图书馆</a-menu-item>
+            <a-menu-item key="10" @click="gotoAllBooks">查看所有被借出的书籍</a-menu-item>
             <a-menu-item key="11">option11</a-menu-item>
             <a-menu-item key="12">option12</a-menu-item>
           </a-sub-menu>
@@ -97,9 +98,24 @@ export default defineComponent({
     };
   },
   methods: {
-    changeMenu(){
-      console.log("changeMenu",this.selectedKeys2);
+    gotoSearchBookName(){
+      console.log("gotoSearchBookName",this.selectedKeys2);
       this.$router.push({name:'SearchBook'});
+    },
+    gotoReturnBook(){
+      console.log("gotoReturnBook",this.selectedKeys2);
+      this.$router.push({name:'ReturnBook'});
+    },
+    gotoMyReturn(type){
+       console.log("gotoMyReturn",this.selectedKeys2);
+       console.log(type);
+       this.$router.push({name:'MyReturn',params:{param:type}});
+    },
+    gotoAddBook(){
+      this.$router.push({name:'AddBook'});
+    },
+    gotoAllBooks(){
+      this.$router.push({name:'AllBorrowed'});
     }
   }
 });
