@@ -129,6 +129,12 @@ export default defineComponent({
   },
   mounted(){
       console.log("MyReturnMounted!",this.param);//直接根据param决定调用哪个函数就好了
+        if(this.param==1){
+            console.log('我的未借图书');
+          }
+          else{
+            console.log('我的已归还图书');
+          }
       console.log(this.myColumn);
   },
   watch:{
@@ -136,6 +142,12 @@ export default defineComponent({
           console.log("MyReturn!route changed!");
           console.log(from);//可以根据from的params.param来判定应该调用哪个函数,记得this.$set一下
           console.log(to);
+          if(from.params.param==1){
+            console.log('我的未借图书');
+          }
+          else{
+            console.log('我的已归还图书');
+          }
       }
   },
   methods:{

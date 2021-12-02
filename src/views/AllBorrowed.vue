@@ -27,7 +27,7 @@
     </template> -->
     <template #action="{record}">
       <span>
-        <a-button type="link" @click="goBorrow(record.bookID)">设为已归还</a-button>
+        <a-button type="link" @click="setReturned(record.bookID)">设为已归还</a-button>
         <a-divider type="vertical" />
         <a>查看详情</a>
         <a-divider type="vertical" />
@@ -145,7 +145,7 @@ export default defineComponent({
     DownOutlined,
   },
   methods:{
-      getBorrowed(bookID){
+      setReturned(bookID){
           console.log('borrowSomeBook',bookID);
           if(typeof(bookID)=="undefined"){
             return;
@@ -167,21 +167,24 @@ export default defineComponent({
         console.log("POST ERROR",err);
       })
       },
-      goSearch(){
-         let param=new FormData();
-      param.append("bookName",this.value);
-      console.log(this.value);
+     getAllBorrowed(){
+      //  let param=new FormData();
+      //  param.append("bookID",bookID);
       let token=sessionStorage.getItem('token');
       service.defaults.headers.common["token"] =token;
       console.log(sessionStorage.getItem('token'));
-      service.post("/api/book/searchBook", param).then((res)=>{
+      service.post("/api/book/AllBorrowed").then((res)=>{
           console.log(res); 
           this.searchResult=res.data.data;
           console.log(this.searchResult);
+          if(res.data.status==true)
+          message.success("获取成功");
+          else
+          message.error("请重试");
       }).catch((err)=>{
         console.log("POST ERROR",err);
       })
-      }
+     }
   }
   
 });
