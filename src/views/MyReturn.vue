@@ -137,6 +137,27 @@ export default defineComponent({
           console.log(from);//可以根据from的params.param来判定应该调用哪个函数,记得this.$set一下
           console.log(to);
       }
+  },
+  methods:{
+    getMyBorrowed(){
+      let formData=new FormData;
+      if(this.param==1){
+        formData.append('finished',false);
+        
+      }else{
+        formData.append('finished',true);
+      }
+
+      service.post("/api/book/myBorrowed",formData).then((res)=>{
+            if(res.data.status==true){
+              this.searchResult=res.data.data;
+              message.success("查询成功");
+            }
+            else{
+              message.success("查询失败");
+            }
+        }).err((err)=>console.log(err));
+    }
   }
 });
 </script>

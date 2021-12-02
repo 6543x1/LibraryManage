@@ -1,11 +1,5 @@
 <template>
     <div class="searchBook">
-    <a-input-search
-      v-model:value="value"
-      placeholder="input search text"
-      enter-button
-      @search="goSearch"
-    />
     <a-table :columns="columns" :data-source="data" :rowKey='record=>record.bookID' :pagination="pagination">
         <!-- 懂了 columns会自动帮你加载全部的属性（除了key）显示到表格里 -->
         <!-- 如果有需要单独指定 像下面这样指定样式就好了 -->
@@ -151,7 +145,7 @@ export default defineComponent({
     DownOutlined,
   },
   methods:{
-      goBorrow(bookID){
+      getBorrowed(bookID){
           console.log('borrowSomeBook',bookID);
           if(typeof(bookID)=="undefined"){
             return;
