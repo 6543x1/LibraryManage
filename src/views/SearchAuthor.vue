@@ -2,7 +2,7 @@
     <div class="searchBook">
     <a-input-search
       v-model:value="value"
-      placeholder="输入书名，支持模糊搜索"
+      placeholder="输入作者名字"
       enter-button
       @search="goSearch"
     />
@@ -95,24 +95,6 @@ const columns = [
     },
   },
 ];
-const data = [
-        {
-            author: "王珊",
-            bookID: "1",
-            bookName: "数据库系统概论",
-            iSBN: "9787040406641",
-            position: "1号柜子一层",
-            type: "大学教材"
-        },
-        {
-            "author": "王珊",
-            "bookID": "2",
-            "bookName": "数据库系统概论",
-            "iSBN": "9787040406641",
-            "position": "2号柜子二层",
-            "type": "大学教材"
-        }
-];
 export default defineComponent({
   setup() {
     const value = ref('');
@@ -126,7 +108,6 @@ export default defineComponent({
     return {
       value,
       onSearch,
-      data,
       columns,
       myData,
     };
@@ -175,12 +156,12 @@ export default defineComponent({
       },
       goSearch(){
          let param=new FormData();
-      param.append("bookName",this.value);
+      param.append("author",this.value);
       console.log(this.value);
       let token=sessionStorage.getItem('token');
       service.defaults.headers.common["token"] =token;
       console.log(sessionStorage.getItem('token'));
-      service.post("/api/book/searchBook", param).then((res)=>{
+      service.post("/api/book/searchBookByAuthor", param).then((res)=>{
           console.log(res); 
           this.searchResult=res.data.data;
           console.log(this.searchResult);

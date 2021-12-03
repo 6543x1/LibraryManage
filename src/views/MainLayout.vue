@@ -10,7 +10,7 @@
         :style="{ lineHeight: '64px' }"
       >
         <a-menu-item key="1">主页</a-menu-item>
-        <a-menu-item key="2">退出登录</a-menu-item>
+        <a-menu-item key="2" @click="logOut">退出登录</a-menu-item>
       </a-menu>
     </a-layout-header>
     <a-layout>
@@ -29,9 +29,8 @@
               </span>
             </template>
             <a-menu-item key="1" @click="gotoSearchBookName()">搜索书名</a-menu-item>
-            <a-menu-item key="2">搜索作者</a-menu-item>
-            <a-menu-item key="3">搜索ISBN</a-menu-item>
-            <a-menu-item key="4">option4</a-menu-item>
+            <a-menu-item key="2" @click="gotoSearchAuthor">搜索作者</a-menu-item>
+            <a-menu-item key="3" @click="gotoSearchISBN">搜索ISBN</a-menu-item>
           </a-sub-menu>
           <a-sub-menu key="sub2">
             <template #title>
@@ -42,10 +41,9 @@
             </template>
             <a-menu-item key="5" @click="gotoReturnBook">还书</a-menu-item>
             <a-menu-item key="6" @click="gotoMyReturn(1)">我的未还图书</a-menu-item>
-            <a-menu-item key="7" @click="gotoMyReturn(2)">我的全部借书</a-menu-item>
-            <a-menu-item key="8">option8</a-menu-item>
+            <a-menu-item key="7" @click="gotoMyReturn(2)">我的已还图书</a-menu-item>
           </a-sub-menu>
-          <a-sub-menu key="sub3">
+          <a-sub-menu key="sub3" v-if="status">
             <!-- 此处可以直接用v-if来判定是否渲染就好了 -->
             <template #title>
               <span>
@@ -55,8 +53,6 @@
             </template>
             <a-menu-item key="9" @click="gotoAddBook">添加书籍到图书馆</a-menu-item>
             <a-menu-item key="10" @click="gotoAllBooks">查看所有被借出的书籍</a-menu-item>
-            <a-menu-item key="11">option11</a-menu-item>
-            <a-menu-item key="12">option12</a-menu-item>
           </a-sub-menu>
         </a-menu>
       </a-layout-sider>
@@ -81,6 +77,7 @@
 // 如何保持Layout而进行不同
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons-vue';
 import { defineComponent, ref } from 'vue';
+import {message} from "ant-design-vue";
 export default defineComponent({
   name:'MainLayout',
   components: {
@@ -90,17 +87,28 @@ export default defineComponent({
   },
 
   setup() {
+    const status=ref('');
+    status.value=sessionStorage.getItem('role')=='admin'?true:false;
     return {
       selectedKeys1: ref(['2']),
       selectedKeys2: ref(['1']),
       collapsed: ref(false),
       openKeys: ref(['sub1']),
+      status
     };
   },
   methods: {
     gotoSearchBookName(){
       console.log("gotoSearchBookName",this.selectedKeys2);
       this.$router.push({name:'SearchBook'});
+    },
+     gotoSearchAuthor(){
+      console.log("gotoAuthor",this.selectedKeys2);
+      this.$router.push({name:'SearchAuthor'});
+    },
+     gotoSearchISBN(){
+      console.log("gotoSearchISBN",this.selectedKeys2);
+      this.$router.push({name:'SearchISBN'});
     },
     gotoReturnBook(){
       console.log("gotoReturnBook",this.selectedKeys2);
@@ -116,6 +124,12 @@ export default defineComponent({
     },
     gotoAllBooks(){
       this.$router.push({name:'AllBorrowed'});
+    },
+    logOut(){
+      sessionStorage.clear();
+      message.info("退出成功");
+      this.$router.push('/Login');
+      
     }
   }
 });

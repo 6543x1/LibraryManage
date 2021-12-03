@@ -51,6 +51,7 @@ export default defineComponent({
             return;
           }
           sessionStorage.setItem("token", res.data.data.jwtToken);
+          sessionStorage.setItem("role",res.data.data.user.role);
           console.log("submit!", toRaw(formState));
 
           router.push("/");
@@ -74,6 +75,7 @@ export default defineComponent({
   methods: {
     TryConsole() {
       console.log(this.formState);
+      this.$router.push("/Register");
     },
   },
 });

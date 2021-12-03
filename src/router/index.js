@@ -5,16 +5,7 @@ import Login from "../views/Login.vue";
 import MainLayout from "../views/MainLayout.vue";
 
 const routes = [
- 
-  // {
-  //   path: "/about",
-  //   name: "About",
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: () =>
-  //     import(/* webpackChunkName: "about" */ "../views/About.vue"),
-  // },
+
 
   {
     path: "/Login",
@@ -29,13 +20,23 @@ const routes = [
     name: "MainLayout",
     component: MainLayout,
     meta: {
-      title: "首页——图书馆管理系统",
+      title: "图书馆管理系统",
     },
     children: [
       {
         path: '/SearchBook',
         name: 'SearchBook',
         component: () => import(/* webpackChunkName: "about" */ '../views/SearchBook.vue'),
+      },
+      {
+        path: '/SearchAuthor',
+        name: 'SearchAuthor',
+        component: () => import(/* webpackChunkName: "about" */ '../views/SearchAuthor.vue'),
+      },
+      {
+        path: '/SearchISBN',
+        name: 'SearchISBN',
+        component: () => import(/* webpackChunkName: "about" */ '../views/SearchISBN.vue'),
       },
       {
         path:'/ReturnBook',
@@ -56,9 +57,20 @@ const routes = [
         path:'/AllBorrowed',
         name:'AllBorrowed',
         component: () => import('../views/AllBorrowed.vue'),
-      }
+      },
+   
     ]
   },
+  {
+    
+      path:'/Register',
+      name:'Register',
+      component:()=>import('../views/Register.vue'),
+      meta:{
+        title:'注册',
+      }
+    
+  }
  
   
 
@@ -78,7 +90,7 @@ router.beforeEach((to, from, next) => {
   var token = sessionStorage.getItem("token");
   //如果没登录,都导向登录页
   if (!token) {
-    if (to.path !== "/Login") {
+    if (to.path !== "/Login"&&to.path!='/Register') {
       next({ path: "/Login" });
     } else {
       next();
