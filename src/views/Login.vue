@@ -81,7 +81,7 @@ export default defineComponent({
 <style scoped>
 .login {
   position: relative;
-  left: 37%;
+  margin-left:40%;
   top: 90%;
   width: 400px;
   height: 200px;

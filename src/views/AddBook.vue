@@ -76,10 +76,10 @@ export default defineComponent({
         required:true,
         message:'请输入类型',
         trigger:'blur',
+        type:'string',
       }],
       ISBN:[{
         required:true,
-        type:'number',
         message:'请输入正确的ISBN',
         trigger:'blur',
       }],

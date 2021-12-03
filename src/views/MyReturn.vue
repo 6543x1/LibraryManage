@@ -19,13 +19,13 @@
           书名
         </span>
       </template>
-      <template #action="{ record }" v-if="param == 6">
+      <template #action="{ record }">
         <span>
           <a-button
             type="link"
-            @click="goBorrow(record.bookID)"
-            :disabled="record.borrowed"
-            >{{ record.borrowed === true ? "已借出" : "借书" }}</a-button
+            @click="goReturn(record.bookID)"
+            :disabled="param!=1"
+            >还书</a-button
           >
           <a-divider type="vertical" />
           <a>查看详情</a>
@@ -55,8 +55,8 @@ export default defineComponent({
   setup() {
     const param=ref('');
     const route=useRoute();
-    param.value=route.params;
-    console.log(route.params);
+    param.value=route.params.param;
+    console.log(route.params.param);
     console.log('param value',param.value);
     return {
       param,
@@ -136,6 +136,7 @@ export default defineComponent({
             console.log('我的已归还图书');
           }
       console.log(this.myColumn);
+      this.getMyBorrowed();
   },
   watch:{
       '$route'(to,from){
@@ -144,22 +145,26 @@ export default defineComponent({
           console.log(to);
           if(from.params.param==1){
             console.log('我的未借图书');
+            this.param=2;
           }
           else{
             console.log('我的已归还图书');
+            this.param=1;
           }
+          this.getMyBorrowed();
       }
   },
   methods:{
     getMyBorrowed(){
       let formData=new FormData;
+      console.log('before post param is',this.param);
       if(this.param==1){
         formData.append('finished',false);
         
       }else{
         formData.append('finished',true);
       }
-
+      service.defaults.headers.common['token']=sessionStorage.getItem('token');
       service.post("/api/book/myBorrowed",formData).then((res)=>{
             if(res.data.status==true){
               this.searchResult=res.data.data;
@@ -168,7 +173,23 @@ export default defineComponent({
             else{
               message.success("查询失败");
             }
-        }).err((err)=>console.log(err));
+        }).catch((err)=>console.log(err));
+    },
+    goReturn(bookID){
+      console.log('return Book ',bookID);
+      let formData =new FormData;
+      formData.append("bookID",bookID);
+       service.defaults.headers.common['token']=sessionStorage.getItem('token');
+      service.post("/api/book/returnBook",formData).then((res)=>{
+            if(res.data.status==true){
+              this.searchResult=res.data.data;
+              message.success("归还成功");
+              this.getMyBorrowed();
+            }
+            else{
+              message.success("归还失败");
+            }
+        }).catch((err)=>console.log(err));
     }
   }
 });
