@@ -74,7 +74,6 @@
   </a-layout>
 </template>
 <script>
-// 如何保持Layout而进行不同
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons-vue';
 import { defineComponent, ref } from 'vue';
 import {message} from "ant-design-vue";

@@ -30,8 +30,12 @@
 </template>
 <script>
 import { defineComponent, reactive, ref } from 'vue';
+import { message } from "ant-design-vue";
+import {useRouter} from 'vue-router';
+import service from "../api/services/service";
 export default defineComponent({
   setup() {
+    const router=useRouter();
     const formRef = ref();
     const formState = reactive({
       username:'',
@@ -41,21 +45,6 @@ export default defineComponent({
       age: undefined,
     });
 
-    let checkAge = async (rule, value) => {
-      if (!value) {
-        return Promise.reject('Please input the age');
-      }
-
-      if (!Number.isInteger(value)) {
-        return Promise.reject('Please input digits');
-      } else {
-        if (value < 18) {
-          return Promise.reject('Age must be greater than 18');
-        } else {
-          return Promise.resolve();
-        }
-      }
-    };
 
     let validatePass = async (rule, value) => {
       if (value === '') {
@@ -120,6 +109,33 @@ export default defineComponent({
 
     const handleFinish = values => {
       console.log(values, formState);
+      console.log("register");
+         let formData = new FormData();
+      formData.append("username", formState.username);
+      formData.append("password", formState.password);
+      formData.append("realName", formState.realName);
+      const hide=message.loading("注册中....",0);
+      service
+        .post("/api/user/register", formData)
+        .then((res) => {
+          console.log(res);
+          setTimeout(hide,1);
+          if (res.data.status == false) {
+            message.error(res.data.msg);
+            return;
+          }
+          else{
+            message.success("注册成功!");
+            router.push("/Login");
+            
+          }
+          console.log("submit!", toRaw(formState));
+
+          router.push("/");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     };
 
     const handleFinishFailed = errors => {
